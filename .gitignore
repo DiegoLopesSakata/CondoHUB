@@ -1,5 +1,6 @@
-# Documentação interna — não versionar
+# Documentação interna e configuração local do Claude Code — não versionar
 CLAUDE.md
+.claude/
 
 # Variáveis de ambiente / segredos
 .env
