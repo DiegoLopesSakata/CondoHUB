@@ -1,6 +1,6 @@
 /* assets/css/layout.css — sidebar, topbar e grid de página */
 
-#app-shell {
+#app-shell:not([hidden]) {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
   min-height: 100vh;
@@ -17,7 +17,7 @@
   padding: 24px;
 }
 
-#auth-shell {
+#auth-shell:not([hidden]) {
   display: flex;
   align-items: center;
   justify-content: center;
