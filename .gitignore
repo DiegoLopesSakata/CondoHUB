@@ -1,3 +1,6 @@
+# Documentação interna — não versionar
+CLAUDE.md
+
 # Variáveis de ambiente / segredos
 .env
 .env.local
