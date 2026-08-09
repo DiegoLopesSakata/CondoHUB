@@ -1,28 +1,37 @@
+import { AppState } from '../../assets/js/state.js';
+
 export default {
-  render(params = {}) {
+  render() {
     const main = document.getElementById('app-content');
-    main.innerHTML = this.template(params);
+    main.innerHTML = this.template();
     this.bindEvents();
   },
 
-  destroy() {
-    // TODO: remover event listeners se necessário
-  },
+  destroy() {},
 
-  template(params = {}) {
+  template() {
+    const notificacoes = AppState.notificacoes;
+
+    if (!notificacoes.length) {
+      return `
+        <div class="page">
+          <header class="page-header"><h1>Notificações</h1></header>
+          <div class="empty-state">Nenhuma notificação por enquanto.</div>
+        </div>
+      `;
+    }
+
     return `
       <div class="page">
-        <header class="page-header">
-          <h1>Notificações</h1>
-        </header>
-        <section>
-          <!-- TODO: implementar tela -->
-        </section>
+        <header class="page-header"><h1>Notificações</h1></header>
+        <div class="card">
+          <div class="card__body">
+            ${notificacoes.map((n) => `<p>${n.mensagem}</p>`).join('')}
+          </div>
+        </div>
       </div>
     `;
   },
 
-  bindEvents() {
-    // TODO: querySelector dentro de #app-content apenas
-  },
+  bindEvents() {},
 };
