@@ -19,6 +19,7 @@ export const USUARIOS = [
     senha: '1234',
     perfil: 'morador',
     unidade: 'Apto 302',
+    veiculoEletrico: true, // RN07 — necessário para reservar vaga com carregador EV
     ativo: true,
   },
   {
