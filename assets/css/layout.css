@@ -1,11 +1,5 @@
 /* assets/css/layout.css — sidebar, topbar e grid de página */
 
-/* TODO: .sidebar / .sidebar__group / .sidebar__item / .sidebar__item--active */
-/* TODO: .topbar */
-/* TODO: #main-wrapper — grid com sidebar fixa + área de conteúdo */
-/* TODO: .page-header */
-/* TODO: .filter-bar */
-
 #app-shell {
   display: grid;
   grid-template-columns: var(--sidebar-width) 1fr;
@@ -28,4 +22,85 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+}
+
+.auth-card {
+  width: 360px;
+}
+
+/* Sidebar */
+.sidebar {
+  background: var(--green-900);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+}
+.sidebar__group {
+  display: flex;
+  flex-direction: column;
+}
+.sidebar__brand {
+  display: block;
+  padding: 8px 20px 20px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.sidebar__item {
+  display: block;
+  padding: 10px 20px;
+  color: var(--green-100);
+  text-decoration: none;
+  font-size: 14px;
+  border-left: 3px solid transparent;
+}
+.sidebar__item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.sidebar__item--active {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-left-color: var(--green-300);
+  font-weight: 600;
+}
+
+/* Topbar */
+.topbar {
+  height: var(--topbar-height);
+  background: var(--white);
+  border-bottom: 1px solid var(--text-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.topbar__info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.topbar__actions a {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* Cabeçalho de página */
+.page-header {
+  margin-bottom: 20px;
+}
+.page-header h1 {
+  font-size: 22px;
+}
+
+/* Barra de filtros */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
 }
