@@ -1,6 +1,6 @@
 # CondoHub
 
-Sistema Integrado de Gestão Condominial — Projeto Integrador I, curso de ADS, FATEC Ipiranga.
+Sistema Integrado de Gestão Condominial — Projeto Integrador, curso de ADS, FATEC Ipiranga.
 
 ## O problema
 
@@ -21,16 +21,12 @@ HTML5 + CSS3 + JavaScript (ES6+), sem frameworks, sem TypeScript, sem build step
 nativos (`import`/`export`). Dados mockados em objetos JS locais — sem backend e sem banco de dados nesta
 fase.
 
-Ver [CLAUDE.md](./CLAUDE.md) para a decisão técnica completa, arquitetura de pastas, design system,
-requisitos funcionais/não funcionais e regras de negócio.
-
 ## Como rodar
 
 Como o projeto usa ES Modules nativos, é necessário servir os arquivos por um servidor local (abrir o
 `index.html` direto do disco não funciona por causa do CORS de módulos).
 
-- **Opção recomendada:** extensão [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
-  do VS Code — botão direito em `index.html` → "Open with Live Server".
+- **Opção recomendada:** extensão [Live Server] do VS Code — botão direito em `index.html` → "Open with Live Server".
 - **Alternativa via npx** (sem instalar nada globalmente): `npx serve .`
 
 ## Equipe
