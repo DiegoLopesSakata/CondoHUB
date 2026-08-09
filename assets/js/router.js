@@ -1,5 +1,10 @@
 // assets/js/router.js — hash router (SPA sem reload)
 
+import { AppState } from './state.js';
+import { DASHBOARD_POR_PERFIL } from './auth.js';
+import { renderSidebar } from '../../components/sidebar.js';
+import { renderTopbar } from '../../components/topbar.js';
+
 export const ROTAS = {
   // Auth
   '/login':                     'auth/login',
@@ -58,13 +63,114 @@ export const ROTAS = {
   '/funcionario/tarefas/:id':   'funcionario/tarefas-detalhe',
 };
 
-// TODO: escutar 'hashchange' e 'DOMContentLoaded'
-// TODO: resolver a rota atual (com suporte a parâmetros ':id') contra ROTAS
-// TODO: verificar AppState.usuarioLogado / perfil antes de renderizar (guarda de rota)
-// TODO: importar dinamicamente a view resolvida e chamar view.render(params)
-// TODO: injetar o HTML da view em #app-content (ou #auth-content quando não autenticado)
-// TODO: atualizar AppState.rotaAnterior / AppState.rotaAtual a cada navegação
+const ROTAS_COMPILADAS = Object.entries(ROTAS).map(([padrao, modulo]) => ({
+  padrao,
+  modulo,
+  partes: padrao.split('/').filter(Boolean),
+}));
+
+const PERFIL_POR_PREFIXO = {
+  sindico: 'sindico',
+  morador: 'morador',
+  porteiro: 'porteiro',
+  funcionario: 'funcionario',
+};
+
+const ROTAS_RESTRITAS_SINDICO = new Set(['/cadastro']); // RN03
+
+function resolverRota(hash) {
+  const caminho = hash.replace(/^#/, '') || '/login';
+  const partesAtuais = caminho.split('/').filter(Boolean);
+
+  for (const rota of ROTAS_COMPILADAS) {
+    if (rota.partes.length !== partesAtuais.length) continue;
+
+    const params = {};
+    let combina = true;
+
+    for (let i = 0; i < rota.partes.length; i++) {
+      const parteRota = rota.partes[i];
+      const parteAtual = partesAtuais[i];
+      if (parteRota.startsWith(':')) {
+        params[parteRota.slice(1)] = parteAtual;
+      } else if (parteRota !== parteAtual) {
+        combina = false;
+        break;
+      }
+    }
+
+    if (combina) {
+      return { caminho: '/' + partesAtuais.join('/'), modulo: rota.modulo, params };
+    }
+  }
+
+  return null;
+}
+
+let viewAtual = null;
+
+async function renderizarRota() {
+  if (!location.hash) {
+    const usuario = AppState.usuarioLogado;
+    location.hash = usuario ? DASHBOARD_POR_PERFIL[usuario.perfil] : '/login';
+    return;
+  }
+
+  const resultado = resolverRota(location.hash);
+  const usuario = AppState.usuarioLogado;
+
+  if (!resultado) {
+    location.hash = usuario ? DASHBOARD_POR_PERFIL[usuario.perfil] : '/login';
+    return;
+  }
+
+  const { caminho, modulo, params } = resultado;
+
+  // Guarda de autenticação e de perfil
+  if (caminho === '/login') {
+    if (usuario) {
+      location.hash = DASHBOARD_POR_PERFIL[usuario.perfil];
+      return;
+    }
+  } else if (!usuario) {
+    location.hash = '/login';
+    return;
+  } else {
+    const prefixo = caminho.split('/')[1];
+    if (PERFIL_POR_PREFIXO[prefixo] && PERFIL_POR_PREFIXO[prefixo] !== usuario.perfil) {
+      location.hash = DASHBOARD_POR_PERFIL[usuario.perfil];
+      return;
+    }
+    if (ROTAS_RESTRITAS_SINDICO.has(caminho) && usuario.perfil !== 'sindico') {
+      location.hash = DASHBOARD_POR_PERFIL[usuario.perfil];
+      return;
+    }
+  }
+
+  AppState.rotaAnterior = AppState.rotaAtual;
+  AppState.rotaAtual = caminho;
+
+  const ehLogin = caminho === '/login';
+  document.getElementById('app-shell').hidden = ehLogin;
+  document.getElementById('auth-shell').hidden = !ehLogin;
+
+  if (viewAtual && typeof viewAtual.destroy === 'function') {
+    viewAtual.destroy();
+  }
+
+  const view = (await import(`../../views/${modulo}.js`)).default;
+  viewAtual = view;
+  view.render(params);
+
+  if (!ehLogin) {
+    renderSidebar(usuario.perfil, caminho);
+    renderTopbar(usuario);
+  }
+}
 
 export function iniciarRouter() {
-  // TODO: implementar
+  window.addEventListener('hashchange', renderizarRota);
+  window.addEventListener('DOMContentLoaded', renderizarRota);
 }
+
+iniciarRouter();

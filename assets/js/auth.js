@@ -1,14 +1,33 @@
 // assets/js/auth.js — login/logout e controle de perfil
 
-// TODO: login(email, senha) — valida contra data/users.js (RN01), popula AppState.usuarioLogado
-// TODO: logout() — limpa AppState.usuarioLogado e redireciona para /login
-// TODO: usuarioAutenticado() — retorna boolean
-// TODO: perfilPermitido(rota) — guarda de rota por perfil (redireciona se perfil não confere)
+import { AppState } from './state.js';
+import { USUARIOS } from '../../data/users.js';
 
+export const DASHBOARD_POR_PERFIL = {
+  sindico: '/sindico/dashboard',
+  morador: '/morador/dashboard',
+  porteiro: '/porteiro/dashboard',
+  funcionario: '/funcionario/dashboard',
+};
+
+// RN01 — não é permitido login sem e-mail e senha válidos cadastrados
 export function login(email, senha) {
-  // TODO: implementar
+  const usuario = USUARIOS.find(
+    (u) => u.email === email && u.senha === senha && u.ativo
+  );
+  if (!usuario) return null;
+
+  AppState.usuarioLogado = usuario;
+  return usuario;
 }
 
 export function logout() {
-  // TODO: implementar
+  AppState.usuarioLogado = null;
+  AppState.rotaAtual = '/login';
+  AppState.rotaAnterior = null;
+  location.hash = '/login';
+}
+
+export function usuarioAutenticado() {
+  return !!AppState.usuarioLogado;
 }
