@@ -1,5 +1,6 @@
 import { encomendas } from '../../data/encomendas.js';
 import { acessos } from '../../data/acessos.js';
+import { renderStatCardGrid } from '../../components/stat-card.js';
 
 export default {
   render() {
@@ -18,16 +19,10 @@ export default {
         <header class="page-header">
           <h1>Dashboard da Portaria</h1>
         </header>
-        <div class="stat-card-grid">
-          <div class="stat-card">
-            <span class="stat-card__label">Encomendas pendentes</span>
-            <span class="stat-card__value">${encomendasPendentes}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__label">Acessos registrados</span>
-            <span class="stat-card__value">${acessos.length}</span>
-          </div>
-        </div>
+        ${renderStatCardGrid([
+          { label: 'Encomendas pendentes', value: encomendasPendentes },
+          { label: 'Acessos registrados', value: acessos.length },
+        ])}
         <section class="card">
           <div class="card__header">Acesso rápido</div>
           <div class="card__body">

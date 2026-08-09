@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { sustentabilidade } from '../../data/sustentabilidade.js';
+import { renderStatCardGrid } from '../../components/stat-card.js';
 
 function variacaoPercentual(valor, media) {
   if (!media) return 0;
@@ -39,18 +40,22 @@ export default {
         <header class="page-header">
           <h1>Sustentabilidade da Unidade</h1>
         </header>
-        <div class="stat-card-grid">
-          <div class="stat-card">
-            <span class="stat-card__label">Água em ${atual.mes} (média condomínio: ${atual.mediaCondominioAgua} m³)</span>
-            <span class="stat-card__value">${atual.consumoAgua} m³</span>
-            <span>${variacaoAgua > 0 ? `<span class="badge badge--red">${variacaoAgua}% acima</span>` : `<span class="badge badge--green">${Math.abs(variacaoAgua)}% abaixo</span>`}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__label">Energia em ${atual.mes} (média condomínio: ${atual.mediaCondominioEnergia} kWh)</span>
-            <span class="stat-card__value">${atual.consumoEnergia} kWh</span>
-            <span>${variacaoEnergia > 0 ? `<span class="badge badge--red">${variacaoEnergia}% acima</span>` : `<span class="badge badge--green">${Math.abs(variacaoEnergia)}% abaixo</span>`}</span>
-          </div>
-        </div>
+        ${renderStatCardGrid([
+          {
+            label: `Água em ${atual.mes} (média condomínio: ${atual.mediaCondominioAgua} m³)`,
+            value: `${atual.consumoAgua} m³`,
+            extra: variacaoAgua > 0
+              ? `<span class="badge badge--red">${variacaoAgua}% acima</span>`
+              : `<span class="badge badge--green">${Math.abs(variacaoAgua)}% abaixo</span>`,
+          },
+          {
+            label: `Energia em ${atual.mes} (média condomínio: ${atual.mediaCondominioEnergia} kWh)`,
+            value: `${atual.consumoEnergia} kWh`,
+            extra: variacaoEnergia > 0
+              ? `<span class="badge badge--red">${variacaoEnergia}% acima</span>`
+              : `<span class="badge badge--green">${Math.abs(variacaoEnergia)}% abaixo</span>`,
+          },
+        ])}
         <table class="data-table">
           <thead class="data-table__header">
             <tr>

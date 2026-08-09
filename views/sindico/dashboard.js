@@ -2,6 +2,7 @@ import { USUARIOS } from '../../data/users.js';
 import { ordens } from '../../data/manutencao.js';
 import { tarefas } from '../../data/tarefas.js';
 import { reunioes } from '../../data/reunioes.js';
+import { renderStatCardGrid } from '../../components/stat-card.js';
 
 export default {
   render() {
@@ -24,24 +25,12 @@ export default {
         <header class="page-header">
           <h1>Dashboard do Síndico</h1>
         </header>
-        <div class="stat-card-grid">
-          <div class="stat-card">
-            <span class="stat-card__label">Moradores cadastrados</span>
-            <span class="stat-card__value">${moradores}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__label">Manutenções pendentes</span>
-            <span class="stat-card__value">${manutencoesPendentes}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__label">Tarefas em aberto</span>
-            <span class="stat-card__value">${tarefasAbertas}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__label">Reuniões agendadas</span>
-            <span class="stat-card__value">${reunioes.length}</span>
-          </div>
-        </div>
+        ${renderStatCardGrid([
+          { label: 'Moradores cadastrados', value: moradores },
+          { label: 'Manutenções pendentes', value: manutencoesPendentes },
+          { label: 'Tarefas em aberto', value: tarefasAbertas },
+          { label: 'Reuniões agendadas', value: reunioes.length },
+        ])}
         <section class="card">
           <div class="card__header">Acesso rápido</div>
           <div class="card__body">

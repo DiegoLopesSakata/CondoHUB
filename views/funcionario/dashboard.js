@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { tarefas } from '../../data/tarefas.js';
+import { renderStatCardGrid } from '../../components/stat-card.js';
 
 export default {
   render() {
@@ -20,16 +21,10 @@ export default {
         <header class="page-header">
           <h1>Dashboard do Funcionário</h1>
         </header>
-        <div class="stat-card-grid">
-          <div class="stat-card">
-            <span class="stat-card__label">Tarefas em aberto</span>
-            <span class="stat-card__value">${abertas}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__label">Total de tarefas</span>
-            <span class="stat-card__value">${minhasTarefas.length}</span>
-          </div>
-        </div>
+        ${renderStatCardGrid([
+          { label: 'Tarefas em aberto', value: abertas },
+          { label: 'Total de tarefas', value: minhasTarefas.length },
+        ])}
         <section class="card">
           <div class="card__header">Acesso rápido</div>
           <div class="card__body">

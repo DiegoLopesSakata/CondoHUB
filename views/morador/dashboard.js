@@ -3,6 +3,7 @@ import { pets } from '../../data/pets.js';
 import { encomendas } from '../../data/encomendas.js';
 import { comunicados } from '../../data/comunicados.js';
 import { reunioes } from '../../data/reunioes.js';
+import { renderStatCardGrid } from '../../components/stat-card.js';
 
 export default {
   render() {
@@ -29,20 +30,11 @@ export default {
         <header class="page-header">
           <h1>Dashboard do Morador</h1>
         </header>
-        <div class="stat-card-grid">
-          <div class="stat-card">
-            <span class="stat-card__label">Meus pets</span>
-            <span class="stat-card__value">${meusPets}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__label">Encomendas pendentes</span>
-            <span class="stat-card__value">${minhasEncomendas}</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-card__label">Comunicados</span>
-            <span class="stat-card__value">${comunicados.length}</span>
-          </div>
-        </div>
+        ${renderStatCardGrid([
+          { label: 'Meus pets', value: meusPets },
+          { label: 'Encomendas pendentes', value: minhasEncomendas },
+          { label: 'Comunicados', value: comunicados.length },
+        ])}
         ${proximaReuniao
           ? `
         <div class="card" style="margin-bottom:16px;">
