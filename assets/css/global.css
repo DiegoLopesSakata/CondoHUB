@@ -1,0 +1,93 @@
+/* assets/css/global.css — reset, custom properties e tipografia base */
+
+:root {
+  /* Verde — cor primária */
+  --green-900: #1B4332;
+  --green-700: #2D6A4F;   /* principal — botões, sidebar ativa */
+  --green-600: #376B55;
+  --green-500: #40916C;   /* hover */
+  --green-300: #74C69D;
+  --green-100: #D8F3DC;   /* backgrounds de badges */
+  --green-50:  #F0FBF4;
+
+  /* Marrom — cor secundária */
+  --brown-700: #5C3317;
+  --brown-600: #6B4226;   /* principal — porteiro, destaques */
+  --brown-500: #7A4A2D;
+  --brown-400: #9C6B47;
+  --brown-200: #D4A574;
+  --brown-100: #EDD5B3;
+  --brown-50:  #FBF5EE;
+
+  /* Neutros */
+  --white:     #FFFFFF;
+  --bg:        #F4F6F5;   /* fundo de página */
+  --text-900:  #111827;
+  --text-700:  #374151;
+  --text-500:  #6B7280;
+  --text-300:  #D1D5DB;
+  --text-200:  #E5E7EB;
+  --text-100:  #F3F4F6;
+
+  /* Semânticas */
+  --danger:    #DC2626;
+  --danger-bg: #FEE2E2;
+  --warning:   #B45309;
+  --warning-bg:#FEF3C7;
+  --info:      #1D4ED8;
+  --info-bg:   #DBEAFE;
+
+  /* Layout */
+  --sidebar-width:     240px;
+  --sidebar-collapsed: 60px;
+  --topbar-height:     54px;
+  --border-radius:     8px;
+  --border-radius-lg:  12px;
+  --shadow-sm:         0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md:         0 4px 12px rgba(0,0,0,0.10);
+
+  /* Tipografia */
+  --font-family:       system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-size-base:    14px;
+  --line-height-base:  1.6;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 1024px;
+  background: var(--bg);
+  color: var(--text-900);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.5em 0;
+  line-height: 1.3;
+}
+
+a {
+  color: var(--green-700);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Foco visível — não remover outline em elementos interativos */
+:focus-visible {
+  outline: 2px solid var(--green-500);
+  outline-offset: 2px;
+}

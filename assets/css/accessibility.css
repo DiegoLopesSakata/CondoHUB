@@ -1,0 +1,25 @@
+/* assets/css/accessibility.css — modo baixa visão e outras a11y overrides */
+
+body.low-vision .lv-focus {
+  font-size: 1.6em !important;
+  transition: font-size 0.15s ease;
+  background: var(--green-50);
+  border-radius: 4px;
+  padding: 2px 4px;
+  position: relative;
+  z-index: 100;
+}
+
+#a11y-toggle {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border: none;
+  border-radius: var(--border-radius-lg, 12px);
+  background: var(--green-700, #2D6A4F);
+  color: var(--white, #FFFFFF);
+  box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.10));
+  cursor: pointer;
+}

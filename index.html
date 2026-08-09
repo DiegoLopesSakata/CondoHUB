@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1024">
+  <title>CondoHub</title>
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/accessibility.css">
+</head>
+<body>
+  <!-- Renderizado pelo router quando autenticado -->
+  <div id="app-shell" hidden>
+    <nav id="sidebar"></nav>
+    <div id="main-wrapper">
+      <header id="topbar"></header>
+      <main id="app-content" role="main" aria-live="polite"></main>
+    </div>
+  </div>
+
+  <!-- Renderizado para login -->
+  <div id="auth-shell">
+    <main id="auth-content"></main>
+  </div>
+
+  <!-- Botão de acessibilidade — sempre visível -->
+  <button id="a11y-toggle" aria-label="Ativar modo baixa visão">
+    👁 Baixa visão
+  </button>
+
+  <script type="module" src="assets/js/state.js"></script>
+  <script type="module" src="assets/js/router.js"></script>
+  <script type="module" src="assets/js/auth.js"></script>
+  <script type="module" src="assets/js/accessibility.js"></script>
+</body>
+</html>

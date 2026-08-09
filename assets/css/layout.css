@@ -1,0 +1,31 @@
+/* assets/css/layout.css — sidebar, topbar e grid de página */
+
+/* TODO: .sidebar / .sidebar__group / .sidebar__item / .sidebar__item--active */
+/* TODO: .topbar */
+/* TODO: #main-wrapper — grid com sidebar fixa + área de conteúdo */
+/* TODO: .page-header */
+/* TODO: .filter-bar */
+
+#app-shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  min-height: 100vh;
+}
+
+#main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#app-content {
+  flex: 1;
+  padding: 24px;
+}
+
+#auth-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
