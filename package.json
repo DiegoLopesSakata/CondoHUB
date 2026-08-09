@@ -1,0 +1,12 @@
+{
+  "name": "condohub",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Sistema Integrado de Gestão Condominial — Projeto Integrador I, ADS, FATEC Ipiranga",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
