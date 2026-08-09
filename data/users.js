@@ -20,6 +20,7 @@ export const USUARIOS = [
     perfil: 'morador',
     unidade: 'Apto 302',
     veiculoEletrico: true, // RN07 — necessário para reservar vaga com carregador EV
+    inadimplente: false,   // RN11 — bloqueia reserva de área comum quando true (conforme área)
     ativo: true,
   },
   {
