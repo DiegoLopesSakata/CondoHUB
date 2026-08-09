@@ -1,5 +1,6 @@
 import { tarefas } from '../../data/tarefas.js';
 import { USUARIOS } from '../../data/users.js';
+import { abrirModal } from '../../components/modal.js';
 
 const BADGE_STATUS = {
   pendente: 'badge--amber',
@@ -83,9 +84,17 @@ export default {
       botao.addEventListener('click', () => {
         const id = Number(botao.dataset.cancelar);
         const tarefa = tarefas.find((t) => t.id === id);
-        if (!tarefa || !confirm('Cancelar esta tarefa?')) return;
-        tarefa.status = 'cancelada';
-        this.render();
+        if (!tarefa) return;
+
+        abrirModal({
+          titulo: 'Cancelar tarefa',
+          corpoHtml: `<p>Cancelar a tarefa "${tarefa.titulo}"?</p>`,
+          textoConfirmar: 'Cancelar tarefa',
+          onConfirmar: () => {
+            tarefa.status = 'cancelada';
+            this.render();
+          },
+        });
       });
     });
   },

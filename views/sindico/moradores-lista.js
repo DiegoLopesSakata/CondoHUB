@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { USUARIOS } from '../../data/users.js';
+import { confirmarExclusao } from '../../components/modal.js';
 
 const NOME_PERFIL = {
   morador: 'Morador',
@@ -95,11 +96,11 @@ export default {
         const pessoa = USUARIOS.find((u) => u.id === id);
         if (!pessoa) return;
 
-        if (!confirm(`Excluir ${pessoa.nome}?`)) return;
-
-        const indice = USUARIOS.findIndex((u) => u.id === id);
-        USUARIOS.splice(indice, 1);
-        this.render();
+        confirmarExclusao(`Excluir ${pessoa.nome}?`, () => {
+          const indice = USUARIOS.findIndex((u) => u.id === id);
+          USUARIOS.splice(indice, 1);
+          this.render();
+        });
       });
     });
   },

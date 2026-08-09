@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { mudancas } from '../../data/mudancas.js';
+import { abrirModal } from '../../components/modal.js';
 
 export default {
   render() {
@@ -71,9 +72,17 @@ export default {
       botao.addEventListener('click', () => {
         const id = Number(botao.dataset.cancelar);
         const mudanca = mudancas.find((m) => m.id === id);
-        if (!mudanca || !confirm('Cancelar esta mudança?')) return;
-        mudanca.status = 'cancelada';
-        this.render();
+        if (!mudanca) return;
+
+        abrirModal({
+          titulo: 'Cancelar mudança',
+          corpoHtml: `<p>Cancelar a mudança de ${mudanca.data} (${mudanca.turno})?</p>`,
+          textoConfirmar: 'Cancelar mudança',
+          onConfirmar: () => {
+            mudanca.status = 'cancelada';
+            this.render();
+          },
+        });
       });
     });
   },

@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { pets } from '../../data/pets.js';
+import { confirmarExclusao } from '../../components/modal.js';
 
 const DIAS_ALERTA_VACINA = 30; // RN20 — alerta de vacinação vencida ou próxima do vencimento
 
@@ -92,11 +93,13 @@ export default {
       botao.addEventListener('click', () => {
         const id = Number(botao.dataset.excluir);
         const pet = pets.find((p) => p.id === id);
-        if (!pet || !confirm(`Excluir ${pet.nome}?`)) return;
+        if (!pet) return;
 
-        const indice = pets.findIndex((p) => p.id === id);
-        pets.splice(indice, 1);
-        this.render();
+        confirmarExclusao(`Excluir ${pet.nome}?`, () => {
+          const indice = pets.findIndex((p) => p.id === id);
+          pets.splice(indice, 1);
+          this.render();
+        });
       });
     });
   },
