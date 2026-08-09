@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { encomendas } from '../../data/encomendas.js';
+import { notificar } from '../../assets/js/notificacoes.js';
 
 export default {
   render() {
@@ -56,7 +57,7 @@ export default {
       }
 
       const usuario = AppState.usuarioLogado;
-      encomendas.push({
+      const novaEncomenda = {
         id: Math.max(0, ...encomendas.map((e) => e.id)) + 1,
         unidade,
         remetente,
@@ -64,6 +65,16 @@ export default {
         registradoEm: new Date().toISOString(),
         status: 'pendente',
         retirada: null,
+      };
+      encomendas.push(novaEncomenda);
+
+      // RF09 — o sistema deve notificar o morador quando uma encomenda chega
+      notificar({
+        tipo: 'encomenda',
+        referenciaId: novaEncomenda.id,
+        mensagem: `Encomenda de ${remetente} chegou para a sua unidade.`,
+        link: '#/morador/encomendas',
+        destino: { unidade },
       });
 
       sucesso.textContent = `Encomenda registrada para ${unidade}. O morador será notificado.`;

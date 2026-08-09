@@ -2,6 +2,7 @@
 
 import { AppState } from './state.js';
 import { DASHBOARD_POR_PERFIL } from './auth.js';
+import { sincronizarAlertasManutencao } from './notificacoes.js';
 import { renderSidebar } from '../../components/sidebar.js';
 import { renderTopbar } from '../../components/topbar.js';
 
@@ -145,6 +146,10 @@ async function renderizarRota() {
       location.hash = DASHBOARD_POR_PERFIL[usuario.perfil];
       return;
     }
+  }
+
+  if (usuario) {
+    sincronizarAlertasManutencao(); // RF06 — mantém a central de notificações do síndico em dia
   }
 
   AppState.rotaAnterior = AppState.rotaAtual;
