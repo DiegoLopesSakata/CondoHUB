@@ -1,4 +1,5 @@
 import { reunioes } from '../../data/reunioes.js';
+import { mostrarToast } from '../../components/notification.js';
 
 function jaTerminou(reuniao) {
   // Simplificação do mock: considera terminada quando o horário de início já passou
@@ -96,6 +97,7 @@ export default {
         encerradaEm: new Date().toLocaleString('pt-BR'),
       };
 
+      mostrarToast('Ata encerrada e arquivada com sucesso.', 'sucesso');
       location.hash = `/sindico/reunioes/${reuniao.id}`;
     });
   },

@@ -1,4 +1,5 @@
 import { encomendas } from '../../data/encomendas.js';
+import { mostrarToast } from '../../components/notification.js';
 
 export default {
   params: {},
@@ -87,6 +88,7 @@ export default {
         retiradoPor: nome,
       };
 
+      mostrarToast('Retirada confirmada com sucesso.', 'sucesso');
       location.hash = '/porteiro/encomendas';
     });
   },

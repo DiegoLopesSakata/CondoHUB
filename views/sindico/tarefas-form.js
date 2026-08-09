@@ -1,6 +1,7 @@
 import { AppState } from '../../assets/js/state.js';
 import { tarefas } from '../../data/tarefas.js';
 import { USUARIOS } from '../../data/users.js';
+import { mostrarToast } from '../../components/notification.js';
 
 export default {
   render() {
@@ -78,6 +79,7 @@ export default {
         status: 'pendente',
       });
 
+      mostrarToast('Tarefa criada com sucesso.', 'sucesso');
       location.hash = '/sindico/tarefas';
     });
   },

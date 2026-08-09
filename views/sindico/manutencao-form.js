@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { ordens } from '../../data/manutencao.js';
+import { mostrarToast } from '../../components/notification.js';
 
 export default {
   render() {
@@ -92,6 +93,7 @@ export default {
         observacoes: [],
       });
 
+      mostrarToast('Ordem de manutenção registrada com sucesso.', 'sucesso');
       location.hash = '/sindico/manutencao';
     });
   },

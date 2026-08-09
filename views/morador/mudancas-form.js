@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { mudancas } from '../../data/mudancas.js';
+import { mostrarToast } from '../../components/notification.js';
 
 const ELEVADORES = ['Elevador Social', 'Elevador de Serviço'];
 const TURNOS = ['Manhã', 'Tarde', 'Noite'];
@@ -84,6 +85,7 @@ export default {
         status: 'agendada',
       });
 
+      mostrarToast('Mudança agendada com sucesso.', 'sucesso');
       location.hash = '/morador/mudancas';
     });
   },

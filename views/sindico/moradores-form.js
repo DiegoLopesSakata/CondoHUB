@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { USUARIOS } from '../../data/users.js';
+import { mostrarToast } from '../../components/notification.js';
 
 export default {
   editando: null,
@@ -109,6 +110,7 @@ export default {
         });
       }
 
+      mostrarToast(this.editando ? 'Morador atualizado com sucesso.' : 'Morador cadastrado com sucesso.', 'sucesso');
       location.hash = '/sindico/moradores';
     });
   },

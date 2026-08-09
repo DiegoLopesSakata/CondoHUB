@@ -1,4 +1,5 @@
 import { reunioes } from '../../data/reunioes.js';
+import { mostrarToast } from '../../components/notification.js';
 
 export default {
   render() {
@@ -76,6 +77,8 @@ export default {
         quorumMinimo: quorumMinimo > 0 ? quorumMinimo : 1,
         ata: null,
       });
+
+      mostrarToast('Reunião convocada com sucesso.', 'sucesso');
 
       location.hash = '/sindico/reunioes';
     });

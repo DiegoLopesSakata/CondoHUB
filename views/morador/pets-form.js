@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { pets } from '../../data/pets.js';
+import { mostrarToast } from '../../components/notification.js';
 
 export default {
   editando: null,
@@ -104,6 +105,7 @@ export default {
         });
       }
 
+      mostrarToast(this.editando ? 'Pet atualizado com sucesso.' : 'Pet cadastrado com sucesso.', 'sucesso');
       location.hash = '/morador/pets';
     });
   },

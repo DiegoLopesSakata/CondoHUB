@@ -1,5 +1,6 @@
 import { AppState } from '../../assets/js/state.js';
 import { areas } from '../../data/areas.js';
+import { mostrarToast } from '../../components/notification.js';
 
 function inicioReserva(data, horario) {
   const [horaInicio] = horario.split('-');
@@ -119,6 +120,7 @@ export default {
       });
 
       AppState.cache.reservaPendente = null;
+      mostrarToast('Reserva confirmada com sucesso.', 'sucesso');
       location.hash = `/morador/areas/${area.id}`;
     });
 
