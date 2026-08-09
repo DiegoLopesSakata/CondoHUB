@@ -2,6 +2,7 @@ import { AppState } from '../../assets/js/state.js';
 import { pets } from '../../data/pets.js';
 import { encomendas } from '../../data/encomendas.js';
 import { comunicados } from '../../data/comunicados.js';
+import { reunioes } from '../../data/reunioes.js';
 
 export default {
   render() {
@@ -18,6 +19,10 @@ export default {
     const minhasEncomendas = encomendas.filter(
       (e) => e.unidade === usuario.unidade && e.status !== 'retirada'
     ).length;
+
+    const proximaReuniao = reunioes
+      .filter((r) => r.data >= new Date().toISOString().slice(0, 10) && !r.presencas.includes(usuario.unidade))
+      .sort((a, b) => a.data.localeCompare(b.data))[0];
 
     return `
       <div class="page">
@@ -38,6 +43,16 @@ export default {
             <span class="stat-card__value">${comunicados.length}</span>
           </div>
         </div>
+        ${proximaReuniao
+          ? `
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card__header">Reunião pendente de confirmação</div>
+          <div class="card__body">
+            <p>${proximaReuniao.pauta} — ${proximaReuniao.data} às ${proximaReuniao.horario}</p>
+            <a class="btn btn--primary btn--sm" href="#/morador/reunioes/${proximaReuniao.id}/presenca">Confirmar presença</a>
+          </div>
+        </div>`
+          : ''}
         <section class="card">
           <div class="card__header">Acesso rápido</div>
           <div class="card__body">
