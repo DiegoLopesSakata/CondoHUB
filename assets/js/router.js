@@ -167,6 +167,11 @@ async function renderizarRota() {
   viewAtual = view;
   view.render(params);
 
+  const container = document.getElementById(ehLogin ? 'auth-content' : 'app-content');
+  container.classList.remove('view-transition');
+  void container.offsetWidth; // reinicia a animação a cada troca de rota
+  container.classList.add('view-transition');
+
   if (!ehLogin) {
     renderSidebar(usuario.perfil, caminho);
     renderTopbar(usuario);
