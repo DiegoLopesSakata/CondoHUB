@@ -36,10 +36,11 @@ Como o projeto usa ES Modules nativos, é necessário servir os arquivos por um 
 ## Equipe
 
 - Diego Lopes Sakata
+- Felipe Martins
+- Franklin Sousa e Silva
 - Jonathan Batista Bispo
-- Franklin Sousa
-- Juliana de Moraes Lacerda
 - Lucas Guilherme do Carmo Silva
+- Nyikholas Seiji Tsukamoto Ferreira
 
 ## Status
 
