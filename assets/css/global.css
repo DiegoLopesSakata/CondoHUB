@@ -40,11 +40,29 @@
   /* Layout */
   --sidebar-width:     240px;
   --sidebar-collapsed: 60px;
-  --topbar-height:     54px;
-  --border-radius:     8px;
-  --border-radius-lg:  12px;
-  --shadow-sm:         0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md:         0 4px 12px rgba(0,0,0,0.10);
+  --topbar-height:     60px;
+
+  /* Raios — escala consistente, "arredondado sem exagero" */
+  --border-radius-sm:  8px;    /* inputs pequenos, chips */
+  --border-radius:     10px;   /* botões, inputs, itens de lista */
+  --border-radius-lg:  16px;   /* cards, modais, tabelas */
+  --border-radius-xl:  20px;   /* superfícies grandes / hero */
+  --border-radius-pill: 999px; /* badges, avatar, toggle */
+
+  /* Bordas sutis — usadas junto com sombra para dar "corpo" sem peso */
+  --border-subtle: 1px solid rgba(17, 24, 39, 0.07);
+  --border-subtle-strong: 1px solid rgba(17, 24, 39, 0.10);
+
+  /* Sombras — camadas leves, nunca pesadas */
+  --shadow-xs:  0 1px 2px rgba(17, 24, 39, 0.04);
+  --shadow-sm:  0 1px 2px rgba(17, 24, 39, 0.04), 0 4px 10px rgba(17, 24, 39, 0.05);
+  --shadow-md:  0 4px 16px rgba(17, 24, 39, 0.08), 0 1px 3px rgba(17, 24, 39, 0.06);
+  --shadow-lg:  0 12px 32px rgba(17, 24, 39, 0.12), 0 2px 6px rgba(17, 24, 39, 0.06);
+  --shadow-focus: 0 0 0 4px rgba(64, 145, 108, 0.16);
+
+  /* Transições — usadas em todos os elementos interativos */
+  --transition-fast: 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Tipografia */
   --font-family:       system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -71,11 +89,14 @@ body {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.5em 0;
   line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--text-900);
 }
 
 a {
@@ -86,10 +107,28 @@ button {
   font-family: inherit;
 }
 
+/* Scrollbar discreta — reforça o acabamento premium sem chamar atenção */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-300) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--text-300);
+  border-radius: var(--border-radius-pill);
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 /* Foco visível — não remover outline em elementos interativos */
 :focus-visible {
   outline: 2px solid var(--green-500);
   outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
 }
 
 /* Transição leve entre views (aplicada pelo router a cada troca de rota) */
@@ -98,8 +137,8 @@ button {
 }
 
 @keyframes view-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { opacity: 0; transform: translateY(2px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
