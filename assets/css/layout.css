@@ -14,7 +14,7 @@
 
 #app-content {
   flex: 1;
-  padding: 24px;
+  padding: 28px 32px;
 }
 
 #auth-shell:not([hidden]) {
@@ -25,7 +25,7 @@
 }
 
 .auth-card {
-  width: 360px;
+  width: 380px;
 }
 
 /* Sidebar */
@@ -34,45 +34,55 @@
   color: var(--white);
   display: flex;
   flex-direction: column;
-  padding: 16px 0;
+  padding: 20px 12px;
+  gap: 4px;
 }
 .sidebar__group {
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 .sidebar__brand {
   display: block;
-  padding: 8px 20px 20px;
+  padding: 8px 12px 22px;
   font-size: 18px;
   font-weight: 700;
+  letter-spacing: -0.01em;
 }
 .sidebar__item {
   display: block;
-  padding: 10px 20px;
-  color: var(--green-100);
+  padding: 10px 14px;
+  color: rgba(216, 243, 220, 0.75);
   text-decoration: none;
   font-size: 14px;
-  border-left: 3px solid transparent;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  border-left: none;
+  transition: background-color var(--transition), color var(--transition);
 }
 .sidebar__item:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--white);
 }
 .sidebar__item--active {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.12);
   color: var(--white);
-  border-left-color: var(--green-300);
   font-weight: 600;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 /* Topbar */
 .topbar {
   height: var(--topbar-height);
   background: var(--white);
-  border-bottom: 1px solid var(--text-200);
+  border-bottom: var(--border-subtle);
+  box-shadow: var(--shadow-xs);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 28px;
+  position: relative;
+  z-index: 10;
 }
 .topbar__info {
   display: flex;
@@ -82,25 +92,43 @@
 .topbar__actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 6px;
 }
 .topbar__actions a {
   text-decoration: none;
-  font-size: 18px;
+  font-size: 17px;
+  color: var(--text-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--border-radius-pill);
+  transition: background-color var(--transition), color var(--transition);
+}
+.topbar__actions a:hover {
+  background: var(--text-100);
+  color: var(--text-900);
 }
 
 /* Cabeçalho de página */
 .page-header {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 .page-header h1 {
   font-size: 22px;
+  font-weight: 700;
 }
 
-/* Barra de filtros */
+/* Barra de filtros — tratada como superfície própria para ganhar destaque */
 .filter-bar {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: var(--white);
+  border: var(--border-subtle);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-xs);
 }
