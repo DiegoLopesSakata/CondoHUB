@@ -25,7 +25,7 @@ export default {
         ])}
         <section class="card">
           <div class="card__header">Acesso rápido</div>
-          <div class="card__body">
+          <div class="card__body card__body--actions">
             <a class="btn btn--secondary btn--sm" href="#/porteiro/encomendas/nova">Registrar encomenda</a>
             <a class="btn btn--secondary btn--sm" href="#/porteiro/acessos/novo">Registrar acesso</a>
           </div>

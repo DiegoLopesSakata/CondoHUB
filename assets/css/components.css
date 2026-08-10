@@ -101,6 +101,19 @@
   margin-right: 8px;
 }
 
+/* Modificador: linha de ações horizontal (ex.: "Acesso rápido").
+   Adicionar junto à classe .card__body no HTML: class="card__body card__body--actions" */
+.card__body--actions {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 20px;
+}
+.card__body--actions > .btn {
+  align-self: auto;
+  margin-right: 0;
+}
+
 /* Stat card */
 .stat-card {
   background: var(--white);
@@ -255,6 +268,7 @@
 .empty-state {
   text-align: center;
   padding: 52px 16px;
+  margin-bottom: 20px;
   color: var(--text-500);
   background: var(--white);
   border: 1px dashed var(--text-300);

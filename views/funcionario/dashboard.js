@@ -27,7 +27,7 @@ export default {
         ])}
         <section class="card">
           <div class="card__header">Acesso rápido</div>
-          <div class="card__body">
+          <div class="card__body card__body--actions">
             <a class="btn btn--secondary btn--sm" href="#/funcionario/tarefas">Ver minhas tarefas</a>
           </div>
         </section>
