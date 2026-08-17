@@ -1,6 +1,10 @@
 /* assets/css/components.css — componentes reutilizáveis (BEM) */
 
 /* Botões */
+[hidden] {
+  display: none !important;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -273,4 +277,100 @@
   background: var(--white);
   border: 1px dashed var(--text-300);
   border-radius: var(--border-radius-lg);
+}
+
+.login-button {
+  position: relative;
+  min-height: 44px;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.login-button:disabled {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.login-button__loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-button__success {
+  font-size: 1.2rem;
+  font-weight: 700;
+  animation: login-success 0.35s ease;
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: login-spin 0.7s linear infinite;
+}
+
+.login-button--success {
+  transform: scale(1.03);
+}
+
+.login-card--error {
+  animation: login-shake 0.35s ease;
+}
+
+.login-card--exit {
+  animation: login-exit 0.35s ease forwards;
+}
+
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes login-success {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes login-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes login-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
 }
