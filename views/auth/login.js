@@ -113,11 +113,26 @@ export default {
         button.classList.add('login-button--success');
 
         // Aguarda a animação de sucesso
-        setTimeout(() => {
+          setTimeout(() => {
           card.classList.add('login-card--exit');
 
           setTimeout(() => {
-            location.hash = DASHBOARD_POR_PERFIL[usuario.perfil];
+            card.innerHTML = `
+              <div class="welcome-screen">
+                <div class="welcome-icon">✓</div>
+
+                <h2>Bem-vindo de volta, ${usuario.nome}!</h2>
+
+                <p>Preparando seu painel...</p>
+              </div>
+            `;
+
+            card.classList.remove('login-card--exit');
+            card.classList.add('welcome-screen--show');
+
+            setTimeout(() => {
+              location.hash = DASHBOARD_POR_PERFIL[usuario.perfil];
+            }, 1000);
           }, 350);
         }, 500);
       }, 700);
