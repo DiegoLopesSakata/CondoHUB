@@ -35,7 +35,6 @@ Como o projeto usa ES Modules nativos, é necessário servir os arquivos por um 
 - Felipe Martins
 - Franklin Sousa e Silva
 - Jonathan Batista Bispo
-- Lucas Guilherme do Carmo Silva
 - Nyikholas Seiji Tsukamoto Ferreira
 
 ## Status
