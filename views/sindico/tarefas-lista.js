@@ -1,4 +1,4 @@
-import { tarefas } from '../../data/tarefas.js';
+import { tarefas, salvarTarefas } from '../../data/tarefas.js';
 import { USUARIOS } from '../../data/users.js';
 import { abrirModal } from '../../components/modal.js';
 
@@ -92,6 +92,7 @@ export default {
           textoConfirmar: 'Cancelar tarefa',
           onConfirmar: () => {
             tarefa.status = 'cancelada';
+            salvarTarefas();
             this.render();
           },
         });

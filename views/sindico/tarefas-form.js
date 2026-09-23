@@ -1,5 +1,5 @@
 import { AppState } from '../../assets/js/state.js';
-import { tarefas } from '../../data/tarefas.js';
+import { tarefas, salvarTarefas } from '../../data/tarefas.js';
 import { USUARIOS } from '../../data/users.js';
 import { mostrarToast } from '../../components/notification.js';
 
@@ -69,8 +69,9 @@ export default {
       }
 
       const usuario = AppState.usuarioLogado;
+      const proximoId = tarefas.length > 0 ? Math.max(...tarefas.map((t) => t.id)) + 1 : 1;
       tarefas.push({
-        id: Math.max(0, ...tarefas.map((t) => t.id)) + 1,
+        id: proximoId,
         titulo,
         descricao,
         atribuidoPara,
@@ -78,6 +79,8 @@ export default {
         prazo,
         status: 'pendente',
       });
+
+      salvarTarefas();
 
       mostrarToast('Tarefa criada com sucesso.', 'sucesso');
       location.hash = '/sindico/tarefas';

@@ -1,5 +1,5 @@
 import { AppState } from '../../assets/js/state.js';
-import { tarefas } from '../../data/tarefas.js';
+import { tarefas, salvarTarefas } from '../../data/tarefas.js';
 
 export default {
   params: {},
@@ -51,7 +51,10 @@ export default {
   bindEvents() {
     document.getElementById('btn-concluir-tarefa')?.addEventListener('click', () => {
       const tarefa = this.tarefaAtual();
-      tarefa.status = 'concluida';
+      if(tarefa) {
+        tarefa.status = 'concluida';
+        salvarTarefas();
+      }
       this.render(this.params);
     });
   },
