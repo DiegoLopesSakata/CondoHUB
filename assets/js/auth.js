@@ -18,11 +18,13 @@ export function login(email, senha) {
   if (!usuario) return null;
 
   AppState.usuarioLogado = usuario;
+  localStorage.setItem('condohub_user', JSON.stringify(usuario));
   return usuario;
 }
 
 export function logout() {
   AppState.usuarioLogado = null;
+  localStorage.removeItem('condohub_user');
   AppState.rotaAtual = '/login';
   AppState.rotaAnterior = null;
   location.hash = '/login';

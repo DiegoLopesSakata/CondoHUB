@@ -1,6 +1,10 @@
 /* assets/css/components.css — componentes reutilizáveis (BEM) */
 
 /* Botões */
+[hidden] {
+  display: none !important;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -12,8 +16,11 @@
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color var(--transition), border-color var(--transition),
-    box-shadow var(--transition), transform var(--transition-fast);
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition-fast);
 }
 .btn:active {
   transform: translateY(1px);
@@ -68,12 +75,30 @@
   font-weight: 600;
   letter-spacing: 0.01em;
 }
-.badge--green { background: var(--green-100); color: var(--green-900); }
-.badge--brown { background: var(--brown-100); color: var(--brown-700); }
-.badge--red   { background: var(--danger-bg); color: var(--danger); }
-.badge--amber { background: var(--warning-bg); color: var(--warning); }
-.badge--blue  { background: var(--info-bg); color: var(--info); }
-.badge--gray  { background: var(--text-100); color: var(--text-700); }
+.badge--green {
+  background: var(--green-100);
+  color: var(--green-900);
+}
+.badge--brown {
+  background: var(--brown-100);
+  color: var(--brown-700);
+}
+.badge--red {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+.badge--amber {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+.badge--blue {
+  background: var(--info-bg);
+  color: var(--info);
+}
+.badge--gray {
+  background: var(--text-100);
+  color: var(--text-700);
+}
 
 /* Cards */
 .card {
@@ -82,7 +107,9 @@
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: box-shadow var(--transition), border-color var(--transition);
+  transition:
+    box-shadow var(--transition),
+    border-color var(--transition);
 }
 .card__header {
   padding: 16px 22px;
@@ -124,7 +151,9 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  transition: box-shadow var(--transition), transform var(--transition);
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition);
 }
 .stat-card:hover {
   box-shadow: var(--shadow-md);
@@ -200,7 +229,9 @@
   font-family: inherit;
   background: var(--white);
   color: var(--text-900);
-  transition: border-color var(--transition), box-shadow var(--transition);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 .form-input::placeholder,
 .form-textarea::placeholder {
@@ -261,8 +292,12 @@
   box-shadow: var(--shadow-lg);
   z-index: 1100;
 }
-.toast--erro { background: var(--danger); }
-.toast--sucesso { background: var(--green-700); }
+.toast--erro {
+  background: var(--danger);
+}
+.toast--sucesso {
+  background: var(--green-700);
+}
 
 /* Estado vazio */
 .empty-state {
@@ -273,4 +308,147 @@
   background: var(--white);
   border: 1px dashed var(--text-300);
   border-radius: var(--border-radius-lg);
+}
+
+.login-button {
+  position: relative;
+  min-height: 44px;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.login-button:disabled {
+  cursor: wait;
+  opacity: 0.8;
+}
+
+.login-button__loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-button__success {
+  font-size: 1.2rem;
+  font-weight: 700;
+  animation: login-success 0.35s ease;
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: login-spin 0.7s linear infinite;
+}
+
+.login-button--success {
+  transform: scale(1.03);
+}
+
+.login-card--error {
+  animation: login-shake 0.35s ease;
+}
+
+.login-card--exit {
+  animation: login-exit 0.35s ease forwards;
+}
+
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes login-success {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes login-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+}
+
+@keyframes login-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.welcome-screen {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.welcome-screen--show {
+  animation: welcome-in 0.4s ease;
+}
+
+.welcome-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.welcome-screen h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.welcome-screen p {
+  margin-top: 8px;
+  opacity: 0.65;
+}
+
+@keyframes welcome-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
